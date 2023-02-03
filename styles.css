@@ -16,13 +16,13 @@ body{
 
 .calculator{
     position: absolute;
-    top: 20vh;
+    top: 30vh;
     background-color: black;
     color: white;
     border-radius: 10px;
     text-align: end;
-    min-width: 300px;
-    min-height: 300px;
+    width: 300px;
+    height: 425px;
     margin: 0 auto;
     padding: 10px;
     font-family: 'Scientific Calculator LCD', sans-serif;
@@ -91,6 +91,7 @@ body{
     font-size: 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.634);
     margin: none;
+    overflow: hidden;
 }
 .answer{
     color: greenyellow;

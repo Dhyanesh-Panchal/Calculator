@@ -16,12 +16,14 @@ export default class Calculator extends Component {
     }
 
     handleKey(event) {
-        let keyPressed = event.target.id;
+        console.log(event)
+        let keyPressed = event.target.name;
         if (keyPressed === 'AC') {
             this.setState({
                 expression: '0',
                 answer: '0',
-                validExpression: true
+                validExpression: true,
+                decimalPossible: true
             })
         }
         else if (keyPressed === '=') {
@@ -36,6 +38,7 @@ export default class Calculator extends Component {
                 this.setState(state => ({
                     validExpression: false,
                     expression: state.expression + keyPressed,
+                    answer: state.expression + keyPressed,
                     decimalPossible: false
                 }))
             }
@@ -46,6 +49,7 @@ export default class Calculator extends Component {
                 this.setState(state => ({
                     validExpression: false,
                     expression: state.expression.slice(0, state.expression.length - 1) + keyPressed,
+                    answer: state.expression.slice(0, state.expression.length - 1) + keyPressed,
                     decimalPossible: true
                 }))
             }
@@ -56,6 +60,7 @@ export default class Calculator extends Component {
                 this.setState(state => ({
                     validExpression: false,
                     expression: state.expression + keyPressed,
+                    answer: state.expression + keyPressed,
                     decimalPossible: true
                 }))
             }
@@ -65,13 +70,15 @@ export default class Calculator extends Component {
             if (this.state.expression === '0') {
                 this.setState({
                     validExpression: true,
-                    expression: keyPressed
+                    expression: keyPressed,
+                    answer: keyPressed
                 })
             }
             else {
                 this.setState(state => ({
                     validExpression: true,
-                    expression: state.expression + keyPressed
+                    expression: state.expression + keyPressed,
+                    answer: state.expression + keyPressed
                 }))
             }
         }

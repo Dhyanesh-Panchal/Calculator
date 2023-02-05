@@ -46,12 +46,23 @@ export default class Calculator extends Component {
         else if (keyPressed === '+' || keyPressed === '-' || keyPressed === '*' || keyPressed === '/') {
             //testing if last character is a operator or not
             if (/[+|*|/|-]/.test(this.state.expression[this.state.expression.length - 1])) {
-                this.setState(state => ({
-                    validExpression: false,
-                    expression: state.expression.slice(0, state.expression.length - 1) + keyPressed,
-                    answer: state.expression.slice(0, state.expression.length - 1) + keyPressed,
-                    decimalPossible: true
-                }))
+                if (keyPressed === '-') {
+                    this.setState(state => ({
+                        validExpression: false,
+                        expression: state.expression + keyPressed,
+                        answer: state.expression + keyPressed,
+                        decimalPossible: true
+                    }))
+                }
+                else {
+                    this.setState(state => ({
+                        validExpression: false,
+                        expression: state.expression.slice(0, state.expression.length - 1) + keyPressed,
+                        answer: state.expression.slice(0, state.expression.length - 1) + keyPressed,
+                        decimalPossible: true
+                    }))
+
+                }
             }
             else if (this.state.expression[this.state.expression.length - 1] === '.') {
                 return;

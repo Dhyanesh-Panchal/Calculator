@@ -45,21 +45,22 @@ let infixToPostFix = (infix) => {
     while (operators.length) {
         postFix.push(operators.pop())
     }
-    console.log(postFix)
-    // console.log(operators)
+    // console.log(postFix)
+    // //console.log(operators)
     return postFix;
 }
 
 let postFixEvaluator = (postFix) => {
     let answer = [];
     for (let i of postFix) {
-        if (/[+|*|/|-]/.test(i)) {
+        console.log('i=', i);
+        if (/[+|*|/|-]/.test(i) && i.length === 1) {
             console.log('The operator is : ', i)
             console.log('The asn array is is : ', answer)
             let b = Number(answer.pop());
-            console.log(b)
+            console.log('b=', b)
             let a = Number(answer.pop());
-            console.log(a)
+            console.log('a=', a)
             switch (i) {
                 case '+':
                     answer.push(a + b);
@@ -84,6 +85,13 @@ let postFixEvaluator = (postFix) => {
 let Evaluator = (exp) => {
     let arr = exp.split(/([+|*|/|-])/);
     console.log(arr);
+    for (let i in arr) {
+        if (!arr[i]) {
+            arr.splice(i, 2);
+            arr[i] = '-' + arr[i];
+        }
+    }
+    console.log(arr)
     return postFixEvaluator(infixToPostFix(arr));
 }
 // Evaluator('553-52/02*63+50');

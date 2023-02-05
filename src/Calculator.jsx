@@ -27,10 +27,11 @@ export default class Calculator extends Component {
             })
         }
         else if (keyPressed === '=') {
-
+            let finalAnswer = Evaluator(this.state.expression);
             // console.log(Evaluator('sasas'))
             this.setState(state => ({
-                answer: Evaluator(state.expression)
+                expression: finalAnswer,
+                answer: finalAnswer
             }))
         }
         else if (keyPressed === '.') {

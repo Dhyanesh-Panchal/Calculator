@@ -46,7 +46,8 @@ export default class Calculator extends Component {
         }
         else if (keyPressed === '+' || keyPressed === '-' || keyPressed === '*' || keyPressed === '/') {
             //testing if last character is a operator or not
-            if (/[+|*|/|-]/.test(this.state.expression[this.state.expression.length - 1])) {
+            let lastCharacter = this.state.expression[this.state.expression.length - 1]
+            if (/[+|/|*|-]/.test(lastCharacter)) {
                 if (keyPressed === '-') {
                     this.setState(state => ({
                         validExpression: false,
@@ -56,13 +57,23 @@ export default class Calculator extends Component {
                     }))
                 }
                 else {
-                    this.setState(state => ({
-                        validExpression: false,
-                        expression: state.expression.slice(0, state.expression.length - 1) + keyPressed,
-                        answer: state.expression.slice(0, state.expression.length - 1) + keyPressed,
-                        decimalPossible: true
-                    }))
-
+                    //Checking if it has two expressions 
+                    if (/[+|/|*|-]/.test(this.state.expression[this.state.expression.length - 2])) {
+                        this.setState(state => ({
+                            validExpression: false,
+                            expression: state.expression.slice(0, this.state.expression.length - 2) + keyPressed,
+                            answer: state.expression.slice(0, this.state.expression.length - 2) + keyPressed,
+                            decimalPossible: true
+                        }))
+                    }
+                    else {
+                        this.setState(state => ({
+                            validExpression: false,
+                            expression: state.expression.slice(0, this.state.expression.length - 1) + keyPressed,
+                            answer: state.expression.slice(0, this.state.expression.length - 1) + keyPressed,
+                            decimalPossible: true
+                        }))
+                    }
                 }
             }
             else if (this.state.expression[this.state.expression.length - 1] === '.') {

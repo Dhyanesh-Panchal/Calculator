@@ -45,6 +45,8 @@ body{
     transition: 200ms;
 }
 .key:active{
+    width: 70px;
+    height: 55px;
     background-color: rgb(118, 118, 118);
     transition: 200ms;
 }
